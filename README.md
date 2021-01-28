@@ -1,6 +1,8 @@
 # startbit
 
 Blocks for Hiwonder startbit
+Modified by scxbx
+
 ## License
 
 MIT
@@ -11,6 +13,6 @@ MIT
 (The metadata above is needed for package search.)
 
 ```package
-startbit=github:LOBOT-ROBOT/Startbit
+startbit=github:scxbx/Startbit
 ```
 
