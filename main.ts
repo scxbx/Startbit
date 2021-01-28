@@ -1876,6 +1876,7 @@ namespace startbit {
      * This is a circle path catch block
      */
     //% block
+    
     export function circle_path_catch() {
         //  -1
         startbit.startbit_setMotorSpeed(100, 90)
@@ -1928,7 +1929,7 @@ namespace startbit {
         startbit.startbit_setMotorSpeed(0, 0)
         //  9
         startbit.startbit_setMotorSpeed(100, 90)
-        basic.pause(12000)
+        basic.pause(14000)
         startbit.startbit_setMotorSpeed(0, 0)
     }
 
