@@ -222,6 +222,7 @@ namespace startbit {
     let TM1640_CMD3 = 0x80;
     let _SEGMENTS = [0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F, 0x77, 0x7C, 0x39, 0x5E, 0x79, 0x71];
 	
+    let distance = 0;
     /**
     * Get the handle command.
     */
@@ -1875,67 +1876,77 @@ namespace startbit {
     /**
      * This is a circle path catch block
      */
+    //% subcategory=FXZ
     //% block
     
     export function circle_path_catch() {
         //  -1
-        startbit.startbit_setMotorSpeed(100, 90)
-        basic.pause(800)
-        //  0
-        startbit.startbit_setMotorSpeed(0, 0)
-        startbit.setServo(startbit.startbit_servorange.range1, 3, 120, 500)
-        basic.pause(1000)
-        startbit.setServo(startbit.startbit_servorange.range1, 2, 40, 500)
-        basic.pause(700)
-        startbit.setServo(startbit.startbit_servorange.range1, 3, 70, 500)
-        basic.pause(700)
-        startbit.setServo(startbit.startbit_servorange.range1, 2, 90, 500)
-        basic.pause(500)
-        //  1
-        startbit.startbit_setMotorSpeed(100, 90)
-        basic.pause(3000)
-        //  2
-        startbit.startbit_setMotorSpeed(30, 90)
-        basic.pause(2000)
-        //  3
-        startbit.startbit_setMotorSpeed(100, 90)
-        basic.pause(1000)
-        //  4
-        startbit.startbit_setMotorSpeed(100, 30)
-        basic.pause(7000)
-        //  5
-        startbit.startbit_setMotorSpeed(100, 90)
-        basic.pause(2500)
-        //  6
-        startbit.startbit_setMotorSpeed(40, 90)
-        basic.pause(7700)
-        //  7
-        startbit.startbit_setMotorSpeed(100, 90)
-        basic.pause(5000)
-        //  8
-        startbit.startbit_setMotorSpeed(0, 0)
-        startbit.setServo(startbit.startbit_servorange.range1, 3, 150, 500)
-        startbit.setServo(startbit.startbit_servorange.range1, 2, 40, 500)
-        //  放下
-        basic.pause(700)
-        startbit.setServo(startbit.startbit_servorange.range1, 3, 120, 500)
-        basic.pause(1500)
-        startbit.setServo(startbit.startbit_servorange.range1, 2, 90, 500)
-        basic.pause(500)
-        startbit.setServo(startbit.startbit_servorange.range1, 3, 90, 500)
-        basic.pause(700)
-        startbit.startbit_setMotorSpeed(-100, 100)
-        basic.pause(650)
-        startbit.startbit_setMotorSpeed(0, 0)
-        //  9
-        startbit.startbit_setMotorSpeed(100, 90)
-        basic.pause(14000)
-        startbit.startbit_setMotorSpeed(0, 0)
+    startbit.startbit_setMotorSpeed(100, 90)
+    basic.pause(800)
+    //  0
+    while (true) {
+        
+        distance = startbit.startbit_ultrasonic(startbit.startbit_ultrasonicPort.port2)
+        if (distance > 11 && distance <= 12) {
+            startbit.startbit_setMotorSpeed(0, 0)
+            startbit.setServo(startbit.startbit_servorange.range1, 3, 120, 500)
+            basic.pause(1000)
+            startbit.setServo(startbit.startbit_servorange.range1, 2, 40, 500)
+            basic.pause(700)
+            startbit.setServo(startbit.startbit_servorange.range1, 3, 70, 500)
+            basic.pause(700)
+            startbit.setServo(startbit.startbit_servorange.range1, 2, 90, 500)
+            basic.pause(500)
+            break
+        }
+        
+    }
+    //  1
+    startbit.startbit_setMotorSpeed(100, 90)
+    basic.pause(3000)
+    //  2
+    startbit.startbit_setMotorSpeed(100, 30)
+    basic.pause(3000)
+    //  3
+    startbit.startbit_setMotorSpeed(100, 90)
+    basic.pause(1000)
+    //  4
+    startbit.startbit_setMotorSpeed(40, 90)
+    basic.pause(7000)
+    //  5
+    //  startbit.startbit_setMotorSpeed(100, 90)
+    //  basic.pause(2500)
+    //  6
+    //  startbit.startbit_setMotorSpeed(40, 90)
+    //  basic.pause(7700)
+    //  7
+    startbit.startbit_setMotorSpeed(100, 90)
+    basic.pause(5000)
+    //  8
+    startbit.startbit_setMotorSpeed(0, 0)
+    startbit.setServo(startbit.startbit_servorange.range1, 3, 150, 500)
+    startbit.setServo(startbit.startbit_servorange.range1, 2, 40, 500)
+    //  放下
+    basic.pause(700)
+    startbit.setServo(startbit.startbit_servorange.range1, 3, 120, 500)
+    basic.pause(1500)
+    startbit.setServo(startbit.startbit_servorange.range1, 2, 90, 500)
+    basic.pause(500)
+    startbit.setServo(startbit.startbit_servorange.range1, 3, 90, 500)
+    basic.pause(700)
+    startbit.startbit_setMotorSpeed(-100, 100)
+    basic.pause(650)
+    startbit.startbit_setMotorSpeed(0, 0)
+    //  9
+    startbit.startbit_setMotorSpeed(100, 100)
+    basic.pause(10000)
+    startbit.startbit_setMotorSpeed(0, 0)
     }
 
     /**
      * This is a my radio receive number block
      */
+    //% subcategory=FXZ
     //% block
     export function myRadioReceiveNumber(receivedNumber: number) {
         if (receivedNumber == 10) {
@@ -1946,8 +1957,9 @@ namespace startbit {
     }
 
     /**
-         * This is a init block
-         */
+     * This is a init block
+     */
+    //% subcategory=FXZ
     //% block
     export function init() {
         startbit.setServo(startbit.startbit_servorange.range1, 1, 90, 1000)
